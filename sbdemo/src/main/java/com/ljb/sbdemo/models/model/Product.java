@@ -9,11 +9,9 @@ import java.util.Date;
 public class Product {
 
     private String id;
-    private String taobaoProductId;     //淘宝商品id
-    private Integer originalPrice;      //原价，单位 分
-    private Integer commission;         //佣金
-    private String code;                //券码
-    private Date deadline;              //过期时间
+    private String productName;     //商品名
+    private Integer price;          //单位分
+    private String type;
     private DeleteFlagEunm deleteFlag;
     private Date createTime;
     private Date updateTime;
