@@ -1,7 +1,7 @@
 package com.ljb.sbdemo.controller;
 
+import com.ljb.sbdemo.common.response.ResultObj;
 import com.ljb.sbdemo.models.params.UserRegisterParam;
-import com.ljb.sbdemo.models.result.Result;
 import com.ljb.sbdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +15,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/userRegister")
-    public Result<String> userRegister(UserRegisterParam param){
+    public ResultObj<String> userRegister(UserRegisterParam param){
 
-        return Result.success(null);
+        return ResultObj.success(null);
     }
 }
