@@ -6,6 +6,10 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
 mybatis:
   typeAliasesPackage: com.ljb.sbdemo.models.model
-  mapperLocations: classpath:mapper/*.xml
+  mapperLocations: classpath*:com/ljb/sbdemo/dao/mapper/*Mapper.xml
 swagger:
     show: true
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+  not-empty: false
+  identity: MYSQL

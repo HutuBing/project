@@ -1,17 +1,12 @@
 package com.ljb.sbdemo.controller;
 
 import com.ljb.sbdemo.common.response.ResultObj;
-import com.ljb.sbdemo.models.model.User;
+import com.ljb.sbdemo.models.model.UserDTO;
 import com.ljb.sbdemo.models.params.UserRegisterParam;
 import com.ljb.sbdemo.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -20,17 +15,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/userRegister")
-    public ResultObj<String> userRegister(UserRegisterParam param){
-
-        return ResultObj.success(null);
+    @RequestMapping(value = "/userRegister", method = RequestMethod.POST)
+    @ApiOperation(value = "用户注册", notes = "用户注册", response = String.class)
+    public ResultObj<String> userRegister(@RequestBody UserRegisterParam param){
+        if(userService.userRegister(param) == true) {
+            return ResultObj.success("注册成功");
+        }
+        return ResultObj.parameterError("该帐号已注册");
     }
 
-    @RequestMapping(value = "/showUser")
-    @ResponseBody
-    public User toIndex(HttpServletRequest request, Model model){
-        String id = request.getParameter("id");
-        User user = this.userService.getUserById(id);
-        return user;
+    @RequestMapping(value = "/showUser", method = RequestMethod.POST)
+    @ApiOperation(value = "获取用户信息", notes = "获取用户信息", response = UserDTO.class)
+    public UserDTO showUser(@RequestBody String id){
+        UserDTO userDTO = this.userService.getUserById(id);
+        return userDTO;
     }
 }

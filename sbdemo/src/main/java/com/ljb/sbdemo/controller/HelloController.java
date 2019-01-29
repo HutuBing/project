@@ -1,6 +1,6 @@
 package com.ljb.sbdemo.controller;
 
-import com.ljb.sbdemo.models.model.User;
+import com.ljb.sbdemo.models.model.UserDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,11 +14,10 @@ public class HelloController {
     }
 
     @RequestMapping("/getUser")
-    public User getUser(){
-        User u = new User();
+    public UserDTO getUser(){
+        UserDTO u = new UserDTO();
         u.setId("testId");
-        u.setNickName("昵称");
-        u.setBalance(100);
+        u.setName("昵称");
         return u;
     }
 }
