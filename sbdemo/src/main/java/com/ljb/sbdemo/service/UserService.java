@@ -5,7 +5,11 @@ import com.ljb.sbdemo.models.params.UserRegisterParam;
 
 public interface UserService {
 
-    boolean userRegister(UserRegisterParam param);
+    boolean userRegister(String account, String name, String password, String sex, String birth, String age, String phone);
 
-    public UserDTO getUserById(String id);
+    boolean userLogin(String account, String password);
+
+    UserDTO getUserInfo(String id, String account);
+
+
 }
