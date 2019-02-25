@@ -9,9 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/hello")
 public class HelloController {
 
-    @RequestMapping(value = "/sayHello", method = RequestMethod.POST)
+    @RequestMapping(value = "/sayHello", method = RequestMethod.GET)
     public String sayHello(){
         return "hello springboot";
+    }
+
+    @RequestMapping(value = "/sayHello2", method = RequestMethod.POST)
+    public String sayHello2(){
+        return "hello springboot2";
     }
 
     @RequestMapping(value = "/getUser", method = RequestMethod.POST)

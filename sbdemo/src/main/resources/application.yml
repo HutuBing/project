@@ -13,3 +13,5 @@ mapper:
   mappers: tk.mybatis.mapper.common.Mapper
   not-empty: false
   identity: MYSQL
+server:
+  port: 8081
