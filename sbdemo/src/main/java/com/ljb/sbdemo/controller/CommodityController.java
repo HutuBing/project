@@ -1,0 +1,32 @@
+package com.ljb.sbdemo.controller;
+
+import com.ljb.sbdemo.common.response.ResultObj;
+import com.ljb.sbdemo.models.model.Commodity;
+import com.ljb.sbdemo.models.params.CommodityParam;
+import com.ljb.sbdemo.models.result.CommodityJson;
+import com.ljb.sbdemo.service.CommodityService;
+import com.ljb.sbdemo.util.ModelChangeUtil;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/commodity")
+public class CommodityController {
+
+    @Autowired
+    CommodityService commodityService;
+
+    @ApiOperation(value = "获取商品列表", notes = "获取商品列表", response = CommodityJson.class)
+    @RequestMapping(value = "/getCommodityList", method = RequestMethod.POST)
+    public ResultObj<List<CommodityJson>> getCommodityList(@RequestBody CommodityParam param){
+        List<Commodity> commodityList = commodityService.getCommodityList(param.getType());
+        List<CommodityJson> result = ModelChangeUtil.changeToCommodityJson(commodityList);
+        return ResultObj.success(result);
+    }
+}

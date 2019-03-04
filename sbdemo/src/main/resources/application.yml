@@ -8,7 +8,7 @@ mybatis:
   typeAliasesPackage: com.ljb.sbdemo.models.model
   mapperLocations: classpath*:com/ljb/sbdemo/dao/mapper/*Mapper.xml
 swagger:
-    show: true
+  show: true
 mapper:
   mappers: tk.mybatis.mapper.common.Mapper
   not-empty: false
