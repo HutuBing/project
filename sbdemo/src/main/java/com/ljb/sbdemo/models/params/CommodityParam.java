@@ -8,4 +8,6 @@ public class CommodityParam {
 
     @ApiModelProperty(value = "商品类型ID", required = true, dataType = "String")
     private String type;
+    @ApiModelProperty(value = "商品ID", required = true, dataType = "String")
+    private String commodityId;
 }

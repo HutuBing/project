@@ -9,9 +9,9 @@ import lombok.Data;
 @ApiModel(value = "获取用户信息入参")
 public class GetUserInfoParam {
 
-    @ApiModelProperty(value = "id", dataType = "String")
+    @ApiModelProperty(value = "用户id", dataType = "String")
     private String id;
-    @ApiModelProperty(value = "account", dataType = "String")
+    @ApiModelProperty(value = "用户帐号", dataType = "String")
     private String account;
 
 }

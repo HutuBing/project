@@ -7,11 +7,10 @@ import lombok.Data;
 public class OrderDTO {
 
     private String id;
-    private String desc;
-    private String price;
+    private String commodityId;
+    private String userId;
     private String address;
     private OrderStatusEnum status;
-    private String url;
-    private String createTime;
+    private Integer num;
 
 }
