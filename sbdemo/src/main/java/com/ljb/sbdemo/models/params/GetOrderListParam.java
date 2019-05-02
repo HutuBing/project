@@ -8,7 +8,7 @@ import lombok.Data;
 @ApiModel(value = "获取订单列表入参")
 public class GetOrderListParam {
 
-    @ApiModelProperty(value = "用户ID", required = true, dataType = "String")
-    private String userId;
+    @ApiModelProperty(value = "用户帐号", required = true, dataType = "String")
+    private String account;
 
 }

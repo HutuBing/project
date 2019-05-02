@@ -8,8 +8,8 @@ import lombok.Data;
 @ApiModel(value = "创建订单入参")
 public class CreateOrderParam {
 
-    @ApiModelProperty(value = "用户ID", required = true, dataType = "String")
-    private String userId;
+    @ApiModelProperty(value = "用户帐号", required = true, dataType = "String")
+    private String account;
     @ApiModelProperty(value = "商品ID", required = true, dataType = "String")
     private String commodityId;
     @ApiModelProperty(value = "商品数量", required = true, dataType = "String")
