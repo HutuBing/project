@@ -12,6 +12,6 @@ public interface CommodityService {
 
     List<Commodity> getUserFavoriteCommodityList(GetUserFavoriteCommodityListParam param);
 
-
+    List<Commodity> getRelateCommodityList(String commodityId);
 
 }

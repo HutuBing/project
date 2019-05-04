@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ljb.sbdemo.dao.CommodityMapper" >
+    <select id="getRelateCommodityList" resultType="com.ljb.sbdemo.models.model.Commodity">
+        SELECT
+        comm.id,
+        comm.category_id AS categoryId,
+        comm.`name`,
+        comm.price,
+        comm.formal_price AS formalPrice,
+        comm.description,
+        comm.image_cover AS imageCover,
+        comm.image_secondary AS imageSecondary
+        FROM
+        t_order ord
+        LEFT JOIN commodity comm ON ord.commodity_id = comm.id
+        WHERE
+        ord.commodity_id <![CDATA[!= ]]> #{commodityId}
+        AND ord.account IN (
+        SELECT
+        o.account
+        FROM
+        `t_order` o
+        WHERE
+        o.commodity_id = #{commodityId}
+        )
+        GROUP BY
+        ord.commodity_id
+        ORDER BY
+        count(*) DESC
+    </select>
+</mapper>

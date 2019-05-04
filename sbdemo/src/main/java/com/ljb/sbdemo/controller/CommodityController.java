@@ -3,6 +3,7 @@ package com.ljb.sbdemo.controller;
 import com.ljb.sbdemo.common.response.ResultObj;
 import com.ljb.sbdemo.models.model.Commodity;
 import com.ljb.sbdemo.models.params.CommodityParam;
+import com.ljb.sbdemo.models.params.GetRelateCommodityListParam;
 import com.ljb.sbdemo.models.params.GetUserFavoriteCommodityListParam;
 import com.ljb.sbdemo.models.result.CommodityJson;
 import com.ljb.sbdemo.service.CommodityService;
@@ -45,5 +46,13 @@ public class CommodityController {
         List<Commodity> commodityList = commodityService.getUserFavoriteCommodityList(param);
         List<CommodityJson> result = ModelChangeUtil.changeToCommodityJson(commodityList);
         return ResultObj.success((result != null && result.size() > 0)?result.get(0) : null);
+    }
+
+    @ApiOperation(value = "获取相关商品", notes = "获取相关商品", response = CommodityJson.class)
+    @RequestMapping(value = "/getRelateCommodityList", method = RequestMethod.POST)
+    public ResultObj<List<CommodityJson>> getRelateCommodityList(@RequestBody GetRelateCommodityListParam param){
+        List<Commodity> commodityList = commodityService.getRelateCommodityList(param.getCommodityId());
+        List<CommodityJson> result = ModelChangeUtil.changeToCommodityJson(commodityList);
+        return ResultObj.success(result);
     }
 }

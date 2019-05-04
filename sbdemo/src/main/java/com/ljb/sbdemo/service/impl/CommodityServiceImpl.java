@@ -16,6 +16,7 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Autowired
     CommodityMapper commodityMapper;
+
     @Override
     public List<Commodity> getCommodityList(CommodityParam param) {
         Commodity commodity = new Commodity();
@@ -26,11 +27,15 @@ public class CommodityServiceImpl implements CommodityService {
             commodity.setId(param.getCommodityId());
         }
         return commodityMapper.select(commodity);
-
     }
 
     @Override
     public List<Commodity> getUserFavoriteCommodityList(GetUserFavoriteCommodityListParam param){
         return null;
+    }
+
+    @Override
+    public List<Commodity> getRelateCommodityList(String commodityId){
+        return commodityMapper.getRelateCommodityList(commodityId);
     }
 }
