@@ -28,5 +28,6 @@
         ord.commodity_id
         ORDER BY
         count(*) DESC
+        LIMIT 0,5
     </select>
 </mapper>

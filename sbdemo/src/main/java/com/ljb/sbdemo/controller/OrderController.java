@@ -2,6 +2,7 @@ package com.ljb.sbdemo.controller;
 
 import com.ljb.sbdemo.common.response.ResultObj;
 import com.ljb.sbdemo.models.model.Order;
+import com.ljb.sbdemo.models.model.OrderDTO;
 import com.ljb.sbdemo.models.params.CreateOrderParam;
 import com.ljb.sbdemo.models.params.GetOrderListParam;
 import com.ljb.sbdemo.models.params.UpdateOrderParam;
@@ -22,7 +23,7 @@ public class OrderController {
     OrderService orderService;
 
     @RequestMapping(value = "/getOrderList", method = RequestMethod.POST)
-    public ResultObj<List<Order>> getOrderList(@RequestBody GetOrderListParam param){
+    public ResultObj<List<OrderDTO>> getOrderList(@RequestBody GetOrderListParam param){
         return ResultObj.success(orderService.getOrderList(param.getAccount()));
     }
 

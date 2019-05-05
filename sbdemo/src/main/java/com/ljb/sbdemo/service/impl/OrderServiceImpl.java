@@ -3,6 +3,7 @@ package com.ljb.sbdemo.service.impl;
 import com.ljb.sbdemo.dao.OrderMapper;
 import com.ljb.sbdemo.models.enums.OrderStatusEnum;
 import com.ljb.sbdemo.models.model.Order;
+import com.ljb.sbdemo.models.model.OrderDTO;
 import com.ljb.sbdemo.models.params.CreateOrderParam;
 import com.ljb.sbdemo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderMapper orderMapper;
     @Override
-    public List<Order> getOrderList(String account){
+    public List<OrderDTO> getOrderList(String account){
         Order order = new Order();
         order.setAccount(account);
-        return orderMapper.select(order);
+        return orderMapper.getOrderList(account);
     }
 
     public String createOrder(CreateOrderParam param){
@@ -39,10 +40,6 @@ public class OrderServiceImpl implements OrderService {
     public String updateOrder(String orderId){
         Order order = new Order();
         order.setId(orderId);
-        order.setCommodityId("0004");
-        order.setAccount("001");
-        order.setAddress("test1");
-        order.setNum(1);
         order.setOrderStatus(OrderStatusEnum.FINISH.getCode());
         if(orderMapper.updateByPrimaryKeySelective(order)>0)
             return "ok";

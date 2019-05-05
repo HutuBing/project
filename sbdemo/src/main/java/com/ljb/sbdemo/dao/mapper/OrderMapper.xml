@@ -2,4 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ljb.sbdemo.dao.OrderMapper" >
 
+    <select id="getOrderList" resultType="com.ljb.sbdemo.models.model.OrderDTO">
+        SELECT
+            ord.id,
+            ord.account,
+            ord.address,
+            ord.commodity_id AS commodityId,
+            ord.num,
+            ord.order_status,
+            comm.name,
+            comm.price,
+            comm.image_cover AS imageUrl
+        FROM
+          t_order ord
+        LEFT JOIN commodity comm ON ord.commodity_id = comm.id
+        WHERE
+          ord.account = #{account}'
+    </select>
 </mapper>
