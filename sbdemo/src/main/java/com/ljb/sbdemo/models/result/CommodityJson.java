@@ -22,5 +22,11 @@ public class CommodityJson {
     private String imageCover;
     @ApiModelProperty(value = "第二张图片url")
     private String imageSecondary;
+    @ApiModelProperty(value = "用户数据反馈的相似度")
+    private String similarityA;
+    @ApiModelProperty(value = "商品名相似度")
+    private String similarityB;
+    @ApiModelProperty(value = "商品相似度")
+    private String similarity;
 
 }

@@ -2,6 +2,9 @@ package com.ljb.sbdemo.service;
 
 import com.ljb.sbdemo.models.model.UserDTO;
 import com.ljb.sbdemo.models.params.UserRegisterParam;
+import com.ljb.sbdemo.models.result.UserInfoJson;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -11,5 +14,7 @@ public interface UserService {
 
     UserDTO getUserInfo(String id, String account);
 
+    List<UserDTO> getUserList();
 
+    List<UserInfoJson> getSimilarUserList(String account);
 }

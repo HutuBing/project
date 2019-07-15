@@ -9,14 +9,38 @@
             ord.address,
             ord.commodity_id AS commodityId,
             ord.num,
-            ord.order_status,
+            ord.order_status AS orderStatus,
             comm.name,
             comm.price,
             comm.image_cover AS imageUrl
         FROM
           t_order ord
         LEFT JOIN commodity comm ON ord.commodity_id = comm.id
+        <if test="account!=null and account!='' ">
         WHERE
-          ord.account = #{account}'
+          ord.account = #{account}
+        </if>
+    </select>
+
+    <select id="countCommomBuy" resultType="Integer">
+        SELECT
+        count(DISTINCT o.commodity_id)
+        FROM
+        t_order o
+        LEFT JOIN t_order oo ON o.commodity_id = oo.commodity_id
+        WHERE
+        o.account = #{accountA}
+        AND oo.account = #{accountB}
+        AND oo.account <![CDATA[!= ]]> #{accountA}
+    </select>
+    <select id="countCommomBuyCommodity" resultType="Integer">
+        SELECT
+	    count(DISTINCT o.account)
+        FROM
+	    t_order o
+        LEFT JOIN t_order oo ON o.account = oo.account
+        WHERE
+	    o.commodity_id = #{commodityIdA}
+        AND oo.commodity_id = #{commodityIdB}
     </select>
 </mapper>

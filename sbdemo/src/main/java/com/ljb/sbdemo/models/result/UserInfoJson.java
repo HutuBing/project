@@ -19,5 +19,7 @@ public class UserInfoJson {
     private String birth;
     @ApiModelProperty(value = "用户名", required = true, dataType = "String")
     private String name;
+    @ApiModelProperty(value = "相似度", required = true, dataType = "String")
+    private String similarity;
 
 }

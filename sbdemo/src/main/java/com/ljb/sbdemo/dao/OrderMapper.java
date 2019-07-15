@@ -13,4 +13,8 @@ public interface OrderMapper extends Mapper<Order> {
 
     List<OrderDTO> getOrderList(@Param("account")String account);
 
+    Integer countCommomBuy(@Param("accountA")String accountA, @Param("accountB")String accountB);
+
+    Integer countCommomBuyCommodity(@Param("commodityIdA")String commodityIdA,@Param("commodityIdB")String commodityIdB);
+
 }

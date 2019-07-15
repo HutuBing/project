@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ljb.sbdemo.dao.UserMapper" >
-    <select id="getOrderList" parameterType="java.lang.String" >
-        select *
-
-        from user_t
-        where id = #{id}
+    <select id="getSimilarUserList" resultType="com.ljb.sbdemo.models.model.UserDTO" >
+        SELECT u.* from user u where u.account in(
+        SELECT DISTINCT
+        oo.account
+        FROM
+        t_order oo
+        WHERE
+        oo.account <![CDATA[!= ]]> #{account}
+        AND oo.commodity_id IN (
+        SELECT DISTINCT
+        o.commodity_id
+        FROM
+        t_order o
+        WHERE
+        o.account = #{account}
+        ))
     </select>
 </mapper>

@@ -28,6 +28,93 @@
         ord.commodity_id
         ORDER BY
         count(*) DESC
-        LIMIT 0,5
+        LIMIT 0,6
+    </select>
+    <select id="getIndexRelateCommodityList" resultType="com.ljb.sbdemo.models.model.Commodity">
+        SELECT
+        DISTINCT comm.id,
+        comm.category_id AS categoryId,
+        comm.`name`,
+        comm.price,
+        comm.formal_price AS formalPrice,
+        comm.description,
+        comm.image_cover AS imageCover,
+        comm.image_secondary AS imageSecondary
+        FROM
+        commodity comm
+        LEFT JOIN t_order oo ON comm.id = oo.commodity_id
+        WHERE
+        oo.account IN (
+        SELECT
+        o.account
+        FROM
+        t_order o
+        WHERE
+        o.account <![CDATA[!= ]]> #{account}
+        AND o.commodity_id IN (
+        SELECT
+        ord.commodity_id
+        FROM
+        t_order ord
+        WHERE
+        ord.account = #{account}
+        )
+        GROUP BY
+        o.account
+        )
+        LIMIT 0,6
+    </select>
+
+    <select id="getSellWellCommodityList" resultType="com.ljb.sbdemo.models.model.Commodity">
+      SELECT
+        DISTINCT comm.id,
+        comm.category_id AS categoryId,
+        comm.`name`,
+        comm.price,
+        comm.formal_price AS formalPrice,
+        comm.description,
+        comm.image_cover AS imageCover,
+        comm.image_secondary AS imageSecondary
+      FROM
+        t_order oo
+      LEFT JOIN commodity comm ON comm.id = oo.commodity_id
+      GROUP BY
+        oo.commodity_id
+      ORDER BY
+        count(*) DESC
+      LIMIT 0,6
+    </select>
+    <select id="getSimilarCommodityList" resultType="com.ljb.sbdemo.models.model.Commodity">
+        SELECT
+        comm.id,
+        comm.category_id AS categoryId,
+        comm.`name`,
+        comm.price,
+        comm.formal_price AS formalPrice,
+        comm.description,
+        comm.image_cover AS imageCover,
+        comm.image_secondary AS imageSecondary
+        FROM
+        commodity comm
+        WHERE
+        comm.id IN (
+        SELECT
+        o.commodity_id
+        FROM
+        t_order o
+        WHERE
+        o.commodity_id <![CDATA[!= ]]> #{commodityId}
+        AND o.account IN (
+        SELECT
+        oo.account
+        FROM
+        t_order oo
+        WHERE
+        oo.commodity_id = #{commodityId}
+        )
+        GROUP BY
+        o.commodity_id
+        ORDER BY
+        count(1) DESC )
     </select>
 </mapper>

@@ -12,4 +12,10 @@ public interface CommodityMapper extends Mapper<Commodity> {
 
     List<Commodity> getRelateCommodityList(@Param("commodityId") String commodityId);
 
+    List<Commodity> getIndexRelateCommodityList(@Param("account") String account);
+
+    List<Commodity> getSellWellCommodityList();
+
+    List<Commodity> getSimilarCommodityList(@Param("commodityId")String commodityId);
+
 }

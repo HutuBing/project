@@ -2,6 +2,7 @@ package com.ljb.sbdemo.controller;
 
 import com.ljb.sbdemo.common.response.ResultObj;
 import com.ljb.sbdemo.models.model.UserDTO;
+import com.ljb.sbdemo.models.params.GetSimilarUserListParam;
 import com.ljb.sbdemo.models.params.GetUserInfoParam;
 import com.ljb.sbdemo.models.params.UserLoginParam;
 import com.ljb.sbdemo.models.params.UserRegisterParam;
@@ -12,6 +13,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -59,4 +63,24 @@ public class UserController {
         }
         return ResultObj.success(ModelChangeUtil.changeUserInfo(userDTO));
     }
+
+    @RequestMapping(value = "/getUserList", method = RequestMethod.POST)
+    @ApiOperation(value = "获取用户列表", notes = "获取用户列表", response = UserInfoJson.class)
+    public ResultObj<List<UserInfoJson>> getUserList() {
+        List<UserInfoJson> result = new ArrayList<>();
+        List<UserDTO> userDTOList = userService.getUserList();
+        for(UserDTO userDTO:userDTOList) {
+            UserInfoJson userInfoJson = ModelChangeUtil.changeUserInfo(userDTO);
+            result.add(userInfoJson);
+        }
+        return ResultObj.success(result);
+    }
+
+    @RequestMapping(value = "/getSimilarUserList", method = RequestMethod.POST)
+    @ApiOperation(value = "获取相似用户列表", notes = "获取相似用户列表", response = UserInfoJson.class)
+    public ResultObj<List<UserInfoJson>> getSimilarUserList(@RequestBody GetSimilarUserListParam param) {
+        List<UserInfoJson> result = userService.getSimilarUserList(param.getAccount());
+        return ResultObj.success(result);
+    }
+
 }
