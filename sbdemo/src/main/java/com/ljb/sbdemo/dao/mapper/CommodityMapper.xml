@@ -117,4 +117,10 @@
         ORDER BY
         count(1) DESC )
     </select>
+
+    <select id="testProd" parameterType="map" statementType="CALLABLE">
+        call Proc_Test(
+            ${id}
+        )
+    </select>
 </mapper>

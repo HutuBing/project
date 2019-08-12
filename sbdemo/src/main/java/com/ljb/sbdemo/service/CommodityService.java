@@ -18,4 +18,6 @@ public interface CommodityService {
     List<Commodity> getSellWellCommodityList();
 
     List<CommodityJson> getSimilarCommodityList(String commodityId);
+
+    void testProd();
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface CommodityMapper extends Mapper<Commodity> {
@@ -16,6 +17,7 @@ public interface CommodityMapper extends Mapper<Commodity> {
 
     List<Commodity> getSellWellCommodityList();
 
-    List<Commodity> getSimilarCommodityList(@Param("commodityId")String commodityId);
+    List<Commodity> getSimilarCommodityList(@Param("commodityId") String commodityId);
 
+    void testProd(Map map);
 }

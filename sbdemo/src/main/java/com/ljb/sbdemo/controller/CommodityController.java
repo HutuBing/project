@@ -71,4 +71,11 @@ public class CommodityController {
         List<CommodityJson> result = commodityService.getSimilarCommodityList(param.getCommodityId());
         return ResultObj.success(result);
     }
+
+    @ApiOperation(value = "测试存储过程", notes = "测试存储过程", response = String.class)
+    @RequestMapping(value = "/testProd", method = RequestMethod.POST)
+    public ResultObj<String> testProd(){
+        commodityService.testProd();
+        return new ResultObj<>("ok");
+    }
 }
